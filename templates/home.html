@@ -1,0 +1,58 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br>
+<div class="container">
+
+
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false" style="margin-left: -10px" >
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'image/coruesel1.png' %}" class="d-block w-100 rounded" alt="..." style=" border: 2px solid white">
+
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'image/caluesel2.png' %}" class="d-block w-100 rounded" alt="..." style=" border: 2px solid white">
+
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'image/carousel3.png' %}" class="d-block w-100 rounded" alt="..." style=" border: 2px solid white">
+
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</div>
+<br>
+    <div class="jumbotron" style="margin-top: -20px">
+  <h1 class="display-4 text-white sdredlight">Welcome, To Frank Sport Co., Ltd.!</h1>
+  <h5 class="lead text-white sdyel">ยินดีต้อนรับเข้าสู่เว็บไซต์ Frank Sport Co., Ltd. </h5>
+
+</div>
+
+    <div class="row" style="margin-top: 20px" >
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+     <img class="mx-auto img-thumbnail" src="{% static 'image/h1.png' %}" alt="5 Terre" style="height: auto; width:100%; box-shadow: -8px 8px 8px rgb(249, 78, 57 ,0.5);">
+        <p class="text-white sblue text-start">   _____บริษัทเราFrank Sport Co., Ltd. เป็นบริษัทนำเข้าเสื้อฟุตบอลจากPremier League ลีคยอดนิยกที่สุดในโลกจากเกาะอังกฤษ
+      โดยสินค้าจากทางเราทุกชิ้นเป็นสินค้าที่มีลิขสิทธิ์แท้จากสโมสร 100%</p>
+    </div>
+    <div class="col-lg-2"></div>
+    </div>
+<br>
+
+
+{% endblock %}

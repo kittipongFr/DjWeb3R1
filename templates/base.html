@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+{% load fontawesome_6 %}
+
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="{% static 'stylesheets/bt523/css/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'stylesheets/font.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'stylesheets/style.css' %}">
+<link rel="icon" href="{% static 'image/logo1.ico' %}" type="image/icon type">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+    <title>FrSport</title>
+
+</head>
+<body>
+
+<div class="container "   >
+
+
+{% include 'header.html' %}
+
+    <div class="row1 ">
+    <div class="row " >
+        <div class="col-lg-3  text-white" style="   border-right:2px solid white; "  >
+
+            {% include 'menu.html' %}
+        </div>
+        <div class="col-lg-9  text-success">
+
+        {% block content %}
+
+            {% endblock %}
+
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="{% static 'stylesheets/bt523/js/bootstrap.js' %}"></script>
+<script src="https://kit.fontawesome.com/5e8fd480ec.js" crossorigin="anonymous"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</div>
+
+</body>
+</html>
