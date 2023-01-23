@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'SampleApp.apps.SampleappConfig',
     'ProfileApp.apps.ProfileappConfig',
-    'fontawesome_6'
+    'fontawesome_6',
+    'django.contrib.humanize'
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="container">
+    <div class="row">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <table class="table text-white">
+                    <form  method="post" class="form form-control">
+                        {% csrf_token %}
+                    <thead>
+                    <th style="width: 20%" ></th>
+                    <th style="width: 80%" ></th>
+                    </thead>
+                    <tr >
+                        <td>Product Id</td>
+                        <td class="text-start"><input  type="text" name="id" size="15" maxlength="15" required></td>
+                    </tr>
+                    <tr>
+                        <td>Product Name</td>
+                        <td class="text-start"><input type="text" name="name" size="15" maxlength="50" required></td>
+                    </tr>
+                    <tr>
+                        <td>Brand</td>
+                        <td class="text-start"><input type="text" name="brand" size="15" maxlength="50" required></td>
+                    </tr>
+                    <tr>
+                        <td>Price</td>
+                        <td class="text-start"><input type="number" name="price" size="10" maxlength="10000" required></td>
+                    </tr>
+                    <tr>
+                        <td>Net</td>
+                        <td class="text-start"><input type="number" name="net" size="0" maxlength="1000" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="Save" class="btn btn-success">
+                            <input type="reset" value="Reset" class="btn btn-danger">
+                        </td>
+                    </tr>
+</form>
+                </table>
+
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+
+
+
+    </div>
+
+
+{% endblock %}
