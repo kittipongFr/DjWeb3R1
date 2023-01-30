@@ -153,13 +153,23 @@ def product_retriveOne(request,pid):
     context = {"product":product}
     return  render(request, 'products/pro_retriveOne.html', context)
 
-
+from django.contrib import messages
 def createProduct(request):
     if request.method == 'POST':
         form = ProductMForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.add_message(request,messages.SUCCESS,'บันทึกข้อมูลเรียบร้อย')
             return redirect('pro_retriveAll')
+        else:
+            product = pro.objects.get(pid=request.POST['pid'])
+            if product:
+                messages.add_message(request, messages.WARNING, 'บันทึกข้อมูลไม่สำเร็จ รหัสสินค้าซ้ำ')
+                return redirect('pro_retriveAll')
+            else:
+                messages.add_message(request, messages.WARNING, 'บันทึกข้อมูลไม่สำเร็จ ลองใหม่อีกครั้ง')
+                return redirect('pro_retriveAll')
+
     else:
         form = ProductMForm
         context = {'form':form}
