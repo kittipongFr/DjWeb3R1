@@ -57,12 +57,11 @@ def showmydata(request):
     pro_list.append(pro8)
     pro_list.append(pro9)
     pro_list.append(pro10)
-
     context = {'name':name,'surname':surname,'gender':gender,'status':status,'work':work,'education':education
                    ,"address":address,'favorite':favorite,'tel':tel,'fb':fb,'pro_list':pro_list}
     return render(request,'showmydata.html',context)
 
-from ProfileApp.models import Product
+from ProfileApp.models import Product,product
 product_list = []
 def showProduct(request):
 
@@ -100,10 +99,70 @@ def frmproduct(request):
             return redirect('showOurproduct')
         else:
             form = ProductForm(form)
-
     else:
         form = ProductForm()
     context={"form":form}
     return render(request, 'frmProduct.html',context)
+
+lstOutProduct = []
+
+
+def listProduct(request):
+
+    context = {'product':lstOutProduct}
+    return render(request,'listProduct.html',context)
+def inputProduct(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form = form.cleaned_data
+            id = form.get('id')
+            name = form.get('name')
+            brand = form.get('brand')
+            price = form.get('price')
+            amount = form.get('amount')
+            made = form.get('made')
+            total = price * amount
+            if amount < 3:
+                discount = 0
+            elif amount <= 5:
+                discount = total * 0.05
+            else:
+                discount = total * 0.10
+            net = total - discount
+            product = Product(id, name, brand, price, amount, made,total,discount,net)
+            lstOutProduct.append(product)
+            return redirect('listProduct')
+        else:
+            form = ProductForm(form)
+    else:
+        form = ProductForm()
+    context = {"form": form}
+    return render(request, 'inputProduct.html', context)
+
+from ProfileApp.models import product
+pro = product
+def product_retriveAll(request):
+    products = pro.objects.all()
+    context = {'products':products}
+    return  render(request, 'products/pro_retriveAll.html', context)
+
+
+def product_retriveOne(request,pid):
+    product = pro.objects.get(pid =pid)
+    context = {"product":product}
+    return  render(request, 'products/pro_retriveOne.html', context)
+
+
+def createProduct(request):
+    if request.method == 'POST':
+        form = ProductMForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('pro_retriveAll')
+    else:
+        form = ProductMForm
+        context = {'form':form}
+        return render(request,'products/createProduct.html',context)
 
 

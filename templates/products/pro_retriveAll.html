@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <h1 class="text-white text-center">ALL Product Imformation <a class="btn btn-success" href="/ProfileApp/createProduct">เพิ่มสินค้า <i class="fas fa-plus"></i></a></h1>
+    <table class="table text-white">
+    <tr>
+        <th>รหัสสินค้า</th><th>ชื่อสินค้า</th><th>ยี่ห้อ</th>
+        <th>ราคา</th><th>คงเหลือ</th><th>ประเภท</th>
+    </tr>
+
+
+    {% for pro in products %}
+    <tr>
+    <td>{{ pro.pid }}</td>
+    <td>{{ pro.name }}</td>
+    <td>{{ pro.brand }}</td>
+    <td>{{ pro.price }}</td>
+    <td>{{ pro.net }}</td>
+    <td>{{ pro.category }}</td>
+      <td><a class="btn text-primary" href="{% url 'pro_retriveOne' pro.pid %}"> <i class="fa-solid fa-magnifying-glass"></i></a></td>
+
+
+    </tr>
+    {% endfor %}
+</table>
+
+
+{% endblock %}

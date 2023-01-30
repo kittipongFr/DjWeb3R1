@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+    <div class="row">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <table class="table text-white">
+                    <form  method="post" class="form form-control">
+                        {% csrf_token %}
+                        {{ form.as_table }}
+
+                    <table class="table">
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="Save" class="btn btn-success">
+                            <input type="reset" value="Reset" class="btn btn-danger">
+
+                        </td>
+                    </tr>
+                         </table>
+        </form>
+                </table>
+
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
