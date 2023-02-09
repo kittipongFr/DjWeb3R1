@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <h1 class="text-white text-center">One Customer Imformation</h1>
+    <table class="table text-white">
+     <tr>
+        <th>รหัสลูกค้า</th><th>ชื่อ</th><th>สกุล</th><th>เบอร์</th>
+        <th>เพศ</th><th>อาชีพ</th>
+    </tr>
+    <tr>
+<td>{{ cus.cid }}</td>
+    <td>{{ cus.name }}</td>
+    <td>{{ cus.surname }}</td>
+                <td>{{ cus.telephone }}</td>
+        <td>{{ cus.getGender }}</td>
+    <td>{{ cus.carreer }}</td>
+
+    </tr>
+
+</table>
+
+
+{% endblock %}

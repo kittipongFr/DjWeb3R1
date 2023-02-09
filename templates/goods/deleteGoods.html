@@ -4,24 +4,24 @@
     <h1 class="text-white text-center">One Product Imformation</h1>
     <table class="table text-white">
     <tr>
-        <th>รหัสสินค้า</th><th>ชื่อสินค้า</th><th>ยี่ห้อ</th>
+       <th>รหัสสินค้า</th><th>ชื่อสินค้า</th><th>ยี่ห้อ</th><th>รุ่น</th>
         <th>ราคา</th><th>คงเหลือ</th><th>ประเภท</th>
     </tr>
 
     <tr>
-    <td>{{ product.pid }}</td>
-    <td>{{ product.name }}</td>
-    <td>{{ product.brand }}</td>
-    <td>{{ product.price }}</td>
-    <td>{{ product.net }}</td>
-    <td>{{ product.category }}</td>
-
+          <td>{{ good.gid }}</td>
+    <td>{{ good.name }}</td>
+    <td>{{ good.brand }}</td>
+                <td>{{ good.model }}</td>
+        <td>{{ good.price }}</td>
+    <td>{{ good.net }}</td>
+    <td>{{ good.goodscategory }}</td>
     </tr>
 
 </table>
 <form method="post">
     {% csrf_token %}
-    <input type="hidden" name="pid" value="{{ product.pid }}">
+    <input type="hidden" name="gid" value="{{ good.gid }}">
     <input type="submit" value="Confirm" class="btn btn-danger">
      <input type="reset" value="Back" class="btn btn-secondary" onclick="history.back()">
 </form>

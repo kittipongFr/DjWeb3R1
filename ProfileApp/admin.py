@@ -4,3 +4,8 @@ from ProfileApp.models import *
 admin.site.register(Category)
 admin.site.register(product)
 admin.site.register(Employee)
+admin.site.register(GoodsCategory)
+admin.site.register(Goods)
+admin.site.register(Customer)
+admin.site.register(Order)
+admin.site.register(OrderDetail)

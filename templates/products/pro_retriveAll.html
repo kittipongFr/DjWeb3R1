@@ -17,7 +17,9 @@
     <td>{{ pro.price }}</td>
     <td>{{ pro.net }}</td>
     <td>{{ pro.category }}</td>
-      <td><a class="btn text-primary" href="{% url 'pro_retriveOne' pro.pid %}"> <i class="fa-solid fa-magnifying-glass"></i></a></td>
+      <td><a class="btn text-primary" href="{% url 'pro_retriveOne' pro.pid %}"> <i class="fa-solid fa-magnifying-glass"></i></a>
+      <a class="btn text-warning" href="{% url 'updateProduct' pro.pid %}"> <i class="fa-solid fa-pencil"></i></a>
+    <a class="btn text-danger" href="{% url 'deleteProduct' pro.pid %} "> <i class="fa-solid fa-trash"></i></a></td>
 
 
     </tr>

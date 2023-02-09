@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponse,redirect
+from django.shortcuts import render,HttpResponse,redirect,get_object_or_404
 
 
 # Create your views here.
@@ -141,15 +141,15 @@ def inputProduct(request):
     return render(request, 'inputProduct.html', context)
 
 from ProfileApp.models import product
-pro = product
+proModel = product
 def product_retriveAll(request):
-    products = pro.objects.all()
+    products = proModel.objects.all()
     context = {'products':products}
     return  render(request, 'products/pro_retriveAll.html', context)
 
 
 def product_retriveOne(request,pid):
-    product = pro.objects.get(pid =pid)
+    product = proModel.objects.get(pid =pid)
     context = {"product":product}
     return  render(request, 'products/pro_retriveOne.html', context)
 
@@ -162,7 +162,7 @@ def createProduct(request):
             messages.add_message(request,messages.SUCCESS,'บันทึกข้อมูลเรียบร้อย')
             return redirect('pro_retriveAll')
         else:
-            product = pro.objects.get(pid=request.POST['pid'])
+            product = proModel.objects.get(pid=request.POST['pid'])
             if product:
                 messages.add_message(request, messages.WARNING, 'บันทึกข้อมูลไม่สำเร็จ รหัสสินค้าซ้ำ')
                 return redirect('pro_retriveAll')
@@ -172,7 +172,161 @@ def createProduct(request):
 
     else:
         form = ProductMForm
+
         context = {'form':form}
         return render(request,'products/createProduct.html',context)
 
+def updateProduct(request,pid):
+    product = get_object_or_404(proModel,pid=pid)
+    form = ProductMForm(data=request.POST or None,instance = product)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            messages.add_message(request , messages.SUCCESS,"แก้ไข้ข้อมูลเรียบร้อย")
+            return  redirect('pro_retriveAll')
+        else:
+            messages.add_message(request, messages.WARNING, "แก้ไข้ข้อมูลผิดพลาด")
+            form.UpdateForm()
+            context = {'form': form}
+            return render(request, 'products/updateProduct.html', context)
+    else:
+        form.UpdateForm()
+        context = {'form':form}
+    return render(request,'products/updateProduct.html',context)
+def deleteProduct(request,pid):
+    if request.method == 'POST':
+        pid = request.POST['pid']
+        product = get_object_or_404(proModel,pid=pid)
+        product.delete()
+        return redirect('pro_retriveAll')
+    else:
+        product = proModel.objects.get(pid=pid)
+        context = {'product':product}
+        return render(request, 'products/deleteProduct.html', context)
 
+def showGoodsAll(request):
+    goods = Goods.objects.all()
+    context = {'goods':goods}
+    return  render(request, 'goods/showGoodsList.html', context)
+
+
+def showGoodsOne(request,gid):
+    goods = Goods.objects.get(gid = gid)
+    context = {"goods":goods}
+    return  render(request, 'goods/showGoodsOne.html', context)
+
+
+def showCusAll(request):
+    cus = Customer.objects.all()
+    context = {'cus':cus}
+    return  render(request, 'goods/showCusList.html', context)
+
+
+def showCusOne(request,cid):
+    cus = Customer.objects.get(cid = cid)
+    context = {"cus":cus}
+    return  render(request, 'goods/showCusOne.html', context)
+
+
+
+def newGoods(request):
+    if request.method == 'POST':
+        form = GoodsMForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request,messages.SUCCESS,'บันทึกข้อมูลเรียบร้อย')
+            return redirect('showGoodsAll')
+        else:
+            goods = Goods.objects.get(gid=request.POST['gid'])
+            if goods:
+                messages.add_message(request, messages.WARNING, 'บันทึกข้อมูลไม่สำเร็จ รหัสสินค้าซ้ำ')
+                return redirect('showGoodsAll')
+            else:
+                messages.add_message(request, messages.WARNING, 'บันทึกข้อมูลไม่สำเร็จ ลองใหม่อีกครั้ง')
+                return redirect('showGoodsAll')
+    else:
+        form = GoodsMForm
+        context = {'form':form}
+        return render(request,'goods/newGoods.html',context)
+
+def updateGoods(request,gid):
+    goods = get_object_or_404(Goods,gid=gid)
+    form = GoodsMForm(data=request.POST or None,instance = goods)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            messages.add_message(request , messages.SUCCESS,"แก้ไข้ข้อมูลเรียบร้อย")
+            return  redirect('showGoodsAll')
+        else:
+            messages.add_message(request, messages.WARNING, "แก้ไข้ข้อมูลผิดพลาด")
+            form.UpdateGoodsForm()
+            context = {'form': form}
+            return render(request, 'goods/updateGoods.html', context)
+    else:
+        form.UpdateGoodsForm()
+        context = {'form':form}
+    return render(request,'goods/updateGoods.html',context)
+def deleteGoods(request,gid):
+    if request.method == 'POST':
+        gid = request.POST['gid']
+        goods = get_object_or_404(Goods,gid=gid)
+        goods.delete()
+        return redirect('showGoodsAll')
+    else:
+        goods = Goods.objects.get(gid=gid)
+        context = {'good':goods}
+        return render(request, 'goods/deleteGoods.html', context)
+
+
+
+def newCus(request):
+    if request.method == 'POST':
+        form = CusMForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request,messages.SUCCESS,'บันทึกข้อมูลเรียบร้อย')
+            return redirect('showCusAll')
+        else:
+            cus = Customer.objects.get(cid=request.POST['cid'])
+            if cus:
+                messages.add_message(request, messages.WARNING, 'บันทึกข้อมูลไม่สำเร็จ รหัสลูกค้าซ้ำ')
+                return redirect('showCusAll')
+            else:
+                messages.add_message(request, messages.WARNING, 'บันทึกข้อมูลไม่สำเร็จ ลองใหม่อีกครั้ง')
+                return redirect('showCusAll')
+
+    else:
+        form = CusMForm
+
+        context = {'form':form}
+        return render(request,'goods/newCustomer.html',context)
+
+
+
+def updateCus(request,cid):
+    cus = get_object_or_404(Customer,cid=cid)
+    form = CusMForm(data=request.POST or None,instance = cus)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            messages.add_message(request , messages.SUCCESS,"แก้ไข้ข้อมูลเรียบร้อย")
+            return  redirect('showCusAll')
+        else:
+            messages.add_message(request, messages.WARNING, "แก้ไข้ข้อมูลผิดพลาด")
+            form.UpdateCusForm()
+            context = {'form': form}
+            return render(request, 'goods/updateCustomer.html', context)
+    else:
+        form.UpdateCusForm()
+        context = {'form':form}
+    return render(request,'goods/updateCustomer.html',context)
+def deleteCus(request,cid):
+    if request.method == 'POST':
+        cid = request.POST['cid']
+        cus = get_object_or_404(Customer,cid=cid)
+        cus.delete()
+        return redirect('showCusAll')
+    else:
+        cus = Customer.objects.get(cid=cid)
+        context = {'cus':cus}
+        return render(request, 'goods/deleteCustomer.html', context)

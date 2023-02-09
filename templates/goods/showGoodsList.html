@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <h1 class="text-white text-center">ALL Product Imformation <a class="btn btn-success" href="/ProfileApp/newGoods">เพิ่มสินค้า <i class="fas fa-plus"></i></a></h1>
+    <table class="table text-white">
+    <tr>
+        <th>รหัสสินค้า</th><th>ชื่อสินค้า</th><th>ยี่ห้อ</th><th>รุ่น</th>
+        <th>ราคา</th><th>คงเหลือ</th><th>ประเภท</th>
+    </tr>
+
+
+    {% for good in goods %}
+    <tr>
+    <td>{{ good.gid }}</td>
+    <td>{{ good.name }}</td>
+    <td>{{ good.brand }}</td>
+                <td>{{ good.model }}</td>
+        <td>{{ good.price }}</td>
+    <td>{{ good.net }}</td>
+    <td>{{ good.goodscategory }}</td>
+      <td><a class="btn text-primary" href="{% url 'showGoodsOne' good.gid %}"> <i class="fa-solid fa-magnifying-glass"></i></a>
+      <a class="btn text-warning" href="{% url 'updateGoods' good.gid %}"> <i class="fa-solid fa-pencil"></i></a>
+    <a class="btn text-danger" href="{% url 'deleteGoods' good.gid %} "> <i class="fa-solid fa-trash"></i></a></td>
+
+
+    </tr>
+    {% endfor %}
+</table>
+
+
+{% endblock %}

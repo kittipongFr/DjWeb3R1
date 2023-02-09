@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <h1 class="text-white text-center">ALL Customer Imformation <a class="btn btn-success" href="/ProfileApp/newCus">เพิ่มลูกค้า <i class="fas fa-plus"></i></a></h1>
+    <table class="table text-white">
+    <tr>
+        <th>รหัสลูกค้า</th><th>ชื่อ</th><th>สกุล</th><th>เบอร์</th>
+        <th>เพศ</th><th>อาชีพ</th>
+    </tr>
+
+
+    {% for c in cus %}
+    <tr>
+    <td>{{ c.cid }}</td>
+    <td>{{ c.name }}</td>
+    <td>{{ c.surname }}</td>
+                <td>{{ c.telephone }}</td>
+        <td>{{ c.getGender }}</td>
+    <td>{{ c.carreer }}</td>
+
+      <td><a class="btn text-primary" href="{% url 'showCusOne' c.cid %}"> <i class="fa-solid fa-magnifying-glass"></i></a>
+      <a class="btn text-warning" href="{% url 'updateCus' c.cid %}"> <i class="fa-solid fa-pencil"></i></a>
+    <a class="btn text-danger" href="{% url 'deleteCus' c.cid %} "> <i class="fa-solid fa-trash"></i></a></td>
+
+
+    </tr>
+    {% endfor %}
+</table>
+
+
+{% endblock %}

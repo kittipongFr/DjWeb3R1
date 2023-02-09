@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <h1 class="text-white text-center">One Product Imformation</h1>
+    <table class="table text-white">
+    <tr>
+        <th>รหัสสินค้า</th><th>ชื่อสินค้า</th><th>ยี่ห้อ</th><th>รุ่น</th>
+        <th>ราคา</th><th>คงเหลือ</th><th>รายละเอียด</th><th>ประเภท</th>
+    </tr>
+
+    <tr>
+   <td>{{ goods.gid }}</td>
+    <td>{{ goods.name }}</td>
+    <td>{{ goods.brand }}</td>
+        <td>{{ goods.model }}</td>
+    <td>{{ goods.price }}</td>
+    <td>{{ goods.net }}</td>
+        <td>{{ goods.property }}</td>
+    <td>{{ goods.goodscategory }}</td>
+
+    </tr>
+
+</table>
+
+
+{% endblock %}
